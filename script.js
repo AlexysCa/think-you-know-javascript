@@ -32,8 +32,15 @@ var questions = [
     },
 ]
 
-// timer code 
+// variables 
+var score = 0;
+var questionIndex = 0;
+var questionsSection = document.querySelector("#questionsSection");
+var ulChoices = document.createElement("ul");
+var penalty = 10;
 var timeleft = 60;
+
+// timer code 
 var downloadTimer = setInterval(function(){
     if(timeleft <= 0) {
         clearInterval(downloadTimer);
@@ -46,5 +53,29 @@ var downloadTimer = setInterval(function(){
 
 // button code
 function theButton() {
-    document.getElementById("button").innerHTML = "Let the games begin!";
+    document.getElementById("button").innerHTML = begin(questionIndex);
+}
+
+// begins putting questions on web page
+function begin(questionIndex) {
+    questionsSection.innerHTML = "";
+    ulChoices.innerHTML = "";
+// for loop to go through questions in array
+    for (var i = 0; i < questions.length; i++) {
+        var seenQuestions = questions[questionIndex].title;
+        var seenChoices = questions[questionIndex].choices;
+        questionsSection.textContent = seenQuestions;
+    }
+    seenChoices.forEach(function (newList) {
+        var listChoice = document.createElement("li");
+        listChoice.textContent = newList;
+        questionsSection.appendChild(ulChoices);
+        ulChoices.appendChild(listChoice);
+        listChoice.addEventListener("click", (compare));
+    })
+}
+function compare(event) {
+    var userSelection = event.target;
+
+    if (userSelection.matches("li"))
 }
