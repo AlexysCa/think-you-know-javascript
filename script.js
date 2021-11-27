@@ -1,5 +1,5 @@
 // timer code 
-var timeleft = 10;
+var timeleft = 60;
 var downloadTimer = setInterval(function(){
     if(timeleft <= 0) {
         clearInterval(downloadTimer);

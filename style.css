@@ -6,3 +6,13 @@
 * {
 background-color: white;
 }
+
+/* styling content on first page of quiz */
+.first-quiz-page div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.first-quiz-page h1 {
+    color: var(--heading-color);
+}
