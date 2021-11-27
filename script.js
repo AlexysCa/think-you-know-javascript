@@ -130,7 +130,34 @@ if (secondsLeft >= 0) {
     questionsSection.appendChild(newP2);
 }
 
+var label = document.createElement("label");
+label.setAttribute("id", "createlabel");
+label.textContent = "Enter your initials: ";
 
+questionsSection.appendChild(label);
+
+var userInput =  document.createElement("input");
+userInput.setAttribute("type", "text");
+userInput.setAttribute("id", "initials");
+userInput.textContent = "";
+
+questionsSection.appendChild(userInput);
+
+var userSumbit = document.createElement("button");
+userSumbit.setAttribute("type", "submit");
+userSumbit.setAttribute("id", "Submit");
+userSumbit.textContent = "Submit";
+
+questionsSection.appendChild(userSumbit);
+
+// captures users entered initals
+userSumbit.addEventListener("click", function() {
+    var initials = userInput.value;
+
+    if (initials === null) {
+        
+    }
+}
    
 
 
