@@ -9,3 +9,8 @@ var downloadTimer = setInterval(function(){
 } 
     timeleft -= 1;
 }, 1000);
+
+// button code
+function theButton() {
+    document.getElementById("button").innerHTML = "Let the games begin!";
+}
