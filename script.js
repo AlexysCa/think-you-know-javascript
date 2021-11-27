@@ -36,9 +36,11 @@ var questions = [
 var score = 0;
 var questionIndex = 0;
 var questionsSection = document.querySelector("#questionsSection");
+var currentBody = document.querySelector("#currentBody");
 var ulChoices = document.createElement("ul");
 var penalty = 10;
 var timeleft = 60;
+var secondsLeft = 50;
 
 // timer code 
 var downloadTimer = setInterval(function(){
@@ -77,5 +79,31 @@ function begin(questionIndex) {
 function compare(event) {
     var userSelection = event.target;
 
-    if (userSelection.matches("li"))
+    if (userSelection.matches("li")) {
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("id", "newDiv");
+
+    if (userSelection.textContent == questions[questionIndex].answer) {
+        score++;
+        newDiv.textContent = "CORRECT! The answer is" + questions[questionIndex].answer;
+    } else {
+        secondsLeft = secondsLeft - penalty;
+        newDiv.textContent = "WRONG! The correct answer is" + questions[questionIndex].answer;
+    }
+
+}
+    questionIndex++;
+
+    if (questionIndex >= questions.length) {
+        allDone();
+        newDiv.textContent = "You reached the end of the quiz!" + " " + "You got " + score + "/" + questions.length + " Correct!";
+    } else {
+        begin(questionIndex);
+    }
+    questionsSection.appendChild(newDiv);
+}
+
+function allDone() {
+    questionsSection.innerHTML = "";
+
 }
