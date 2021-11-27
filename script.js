@@ -40,7 +40,7 @@ var currentBody = document.querySelector("#currentBody");
 var ulChoices = document.createElement("ul");
 var penalty = 10;
 var timeleft = 60;
-var secondsLeft = 50;
+var secondsLeft = 55;
 
 // timer code 
 var downloadTimer = setInterval(function(){
@@ -85,10 +85,10 @@ function compare(event) {
 
     if (userSelection.textContent == questions[questionIndex].answer) {
         score++;
-        newDiv.textContent = "CORRECT! The answer is" + questions[questionIndex].answer;
+        newDiv.textContent = "CORRECT! The answer is " + questions[questionIndex].answer;
     } else {
-        secondsLeft = secondsLeft - penalty;
-        newDiv.textContent = "WRONG! The correct answer is" + questions[questionIndex].answer;
+        var secondsLeft = (secondsLeft - penalty);
+        newDiv.textContent = "WRONG! The correct answer is " + questions[questionIndex].answer;
     }
 
 }
@@ -103,7 +103,36 @@ function compare(event) {
     questionsSection.appendChild(newDiv);
 }
 
+// should show last page when done
 function allDone() {
     questionsSection.innerHTML = "";
+    currentBody.innerHTML = "";
 
+// creates new heading
+    var newH1 = document.createElement("h1");
+    newH1.setAttribute("id", "newH1");
+    newH1.textContent = "All done!"
+
+    questionsSection.appendChild(newH1);
+
+// creates new paragraph
+    var newP = document.createElement("p");
+    newP.setAttribute("id", "newP",);
+
+    questionsSection.appendChild(newP)
+
+if (secondsLeft >= 0) {
+    var timeRemaining = secondsLeft;
+    var newP2 = document.createElement("p");
+    clearInterval(secondsLeft);
+    newP.textContent = "Your final score is " + timeRemaining;
+
+    questionsSection.appendChild(newP2);
+}
+
+
+   
+
+
+   
 }
