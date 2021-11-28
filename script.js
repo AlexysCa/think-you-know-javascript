@@ -38,25 +38,28 @@ var questionIndex = 0;
 var questionsSection = document.querySelector("#questionsSection");
 var currentBody = document.querySelector("#currentBody");
 var ulChoices = document.createElement("ul");
+var currentTimer = document.querySelector("#currentTimer")
+var timer = document.querySelector("#button");
 var penalty = 10;
-var timeleft = 60;
-var secondsLeft = 55;
+var holdInterval = 0;
+var secondsLeft = 76;
 
 // timer code 
-var downloadTimer = setInterval(function(){
-    if(timeleft <= 0) {
-        clearInterval(downloadTimer);
-        document.getElementById("timer").innerHTML = "Finished";
-}   else {
-        document.getElementById("timer").innerHTML = timeleft + " seconds remaining";
-} 
-    timeleft -= 1;
-}, 1000);
-
-// button code
-function theButton() {
-    document.getElementById("button").innerHTML = begin(questionIndex);
-}
+timer.addEventListener("click", function (){
+    if (holdInterval === 0) {
+        holdInterval = setInterval(function(){
+        secondsLeft--;
+        currentTimer.textContent = "Time: " + secondsLeft;
+    
+    if (secondsLeft <= 0) {
+        clearInterval(holdInterval);
+        allDone();
+        currentTimer.textContent = "Time is up!";
+             }
+        }, 1000);
+    }
+    begin(questionIndex);
+})
 
 // begins putting questions on web page
 function begin(questionIndex) {
@@ -85,10 +88,10 @@ function compare(event) {
 
     if (userSelection.textContent == questions[questionIndex].answer) {
         score++;
-        newDiv.textContent = "CORRECT! The answer is " + questions[questionIndex].answer;
+        newDiv.textContent = "CORRECT!";
     } else {
-        var secondsLeft = (secondsLeft - penalty);
-        newDiv.textContent = "WRONG! The correct answer is " + questions[questionIndex].answer;
+        secondsLeft = secondsLeft - penalty;
+        newDiv.textContent = "WRONG!";
     }
 
 }
@@ -124,7 +127,7 @@ function allDone() {
 if (secondsLeft >= 0) {
     var timeRemaining = secondsLeft;
     var newP2 = document.createElement("p");
-    clearInterval(secondsLeft);
+    clearInterval(holdInterval);
     newP.textContent = "Your final score is " + timeRemaining;
 
     questionsSection.appendChild(newP2);
@@ -155,11 +158,24 @@ userSumbit.addEventListener("click", function() {
     var initials = userInput.value;
 
     if (initials === null) {
-        
+        window.alert("Enter your initals to save your score!");
+    } else {
+        var userScore = {
+            initials: initials,
+            score: timeRemaining,
+        }
+        window.alert(timeRemaining + " is your final score!");
+        var allScores = localStorage.getItem("allScores");
+        if (allScores === null) {
+            allScores = [];
+        } else {
+            allScores = JSON.parse(allScores);
+        }
+        allScores.push(userScore);
+        var newScore = JSON.stringify(allScores);
+        localStorage.setItem("allScores", newScore);
+
+        window.location.replace("./indexhighscores.html");
     }
-}
-   
-
-
-   
+}) 
 }
