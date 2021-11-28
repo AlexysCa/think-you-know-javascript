@@ -16,3 +16,8 @@ background-color: white;
 .first-quiz-page h1 {
     color: var(--heading-color);
 }
+
+/*styling content on second page of quiz */
+.second-quiz-page h1 {
+    color: var(--heading-color);
+}
