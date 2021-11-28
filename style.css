@@ -7,6 +7,32 @@
 background-color: white;
 }
 
+button {
+    background-color: var(--heading-color);
+    padding: 15px 32px;
+    font-size: 20px;
+    color: var(--font-color)
+}
+#Submit {
+    padding: 4px 8px;
+    font-size: 11px;
+}
+li {
+    background-color: var(--heading-color);
+    margin-top: 10px;
+    padding: 5px 15px;
+    font-size: 18px;
+    color: var(--font-color);
+    width: 60%;
+    border: solid black 2px;
+}
+#newDiv {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 5px;
+}
+
 /* styling content on first page of quiz */
 .first-quiz-page div {
     display: flex;
@@ -21,3 +47,4 @@ background-color: white;
 .second-quiz-page h1 {
     color: var(--heading-color);
 }
+

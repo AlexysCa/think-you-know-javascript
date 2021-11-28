@@ -37,7 +37,7 @@ var score = 0;
 var questionIndex = 0;
 var questionsSection = document.querySelector("#questionsSection");
 var currentBody = document.querySelector("#currentBody");
-var ulChoices = document.createElement("ul");
+var olChoices = document.createElement("ol");
 var currentTimer = document.querySelector("#currentTimer")
 var timer = document.querySelector("#button");
 var penalty = 10;
@@ -64,7 +64,7 @@ timer.addEventListener("click", function (){
 // begins putting questions on web page
 function begin(questionIndex) {
     questionsSection.innerHTML = "";
-    ulChoices.innerHTML = "";
+    olChoices.innerHTML = "";
 // for loop to go through questions in array
     for (var i = 0; i < questions.length; i++) {
         var seenQuestions = questions[questionIndex].title;
@@ -74,8 +74,8 @@ function begin(questionIndex) {
     seenChoices.forEach(function (newList) {
         var listChoice = document.createElement("li");
         listChoice.textContent = newList;
-        questionsSection.appendChild(ulChoices);
-        ulChoices.appendChild(listChoice);
+        questionsSection.appendChild(olChoices);
+        olChoices.appendChild(listChoice);
         listChoice.addEventListener("click", (compare));
     })
 }
