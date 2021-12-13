@@ -3,6 +3,8 @@ This is a timed quiz on JavaScript fundamentals for students in a coding boot ca
 
 ### Link to URL 
 
+https://alexysca.github.io/think-you-know-javascript/
+
 ### Screenshots of URL
 
 <img width="1273" alt="Screen Shot 2021-11-27 at 9 33 02 PM" src="https://user-images.githubusercontent.com/92767735/143726807-54813b4c-6417-4c6a-b0d9-c165e491db6f.png">
